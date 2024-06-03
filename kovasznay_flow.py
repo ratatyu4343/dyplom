@@ -29,20 +29,20 @@ data = dde.data.PDE(
     [boundary_condition_u, boundary_condition_v, boundary_condition_right_p],
     num_domain=3000,
     num_boundary=400,
-    num_test=100000,
+    num_test=1000,
 )
 
-net = dde.nn.FNN([2] + 3 * [64] + [3], "tanh", "Glorot normal")
+net = dde.nn.FNN([2] + 2 * [30] + [3], "tanh", "Glorot normal")
 
 model = dde.Model(data, net)
 
 model.compile("adam", lr=1e-3)
 
 imgs_list = []
-X = spatial_domain.random_points(100000)
+X = spatial_domain.random_points(10000)
 custom_callback = SavePredictionsCallback(100, X, imgs_list)
 
-losshistory, train_state = model.train(iterations=15000, display_every=100, callbacks=[custom_callback])
+losshistory, train_state = model.train(iterations=10000, display_every=100, callbacks=[custom_callback])
 dde.saveplot(losshistory, train_state, output_dir="./model_info/")
 
 
@@ -120,8 +120,12 @@ plt.savefig("./model_info/eror_pres.png")
 for i in range(len(imgs_list)):
     u_pred = imgs_list[i][:, 0]
     v_pred = imgs_list[i][:, 1]
-    plt.figure(figsize=(10, 5))
-    plt.scatter(X[:, 0], X[:, 1], c=velocity_magnitude_pred, cmap='viridis')
-    plt.colorbar(label='Predicted velocity magnitude')
-    plt.title('Predicted velocity magnitude')
-    plt.savefig(f"./model_info/animation/prediction{i}.png")
+    velocity_magnitude_pred = np.sqrt(u_pred ** 2 + v_pred ** 2)
+    try:
+        plt.figure(figsize=(10, 5))
+        plt.scatter(X[:, 0], X[:, 1], c=velocity_magnitude_pred, cmap='viridis')
+        plt.colorbar(label='Predicted velocity magnitude')
+        plt.title('Predicted velocity magnitude')
+        plt.savefig(f"./model_info/animation/prediction{i}.png")
+    finally:
+        plt.close()
