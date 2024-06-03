@@ -8,6 +8,52 @@ Y_DATA_PATH = "./models_statistic/model30_3_1000/predictions/prediction_for_poin
 BIN_OPERATORS = ["+", "*", "-", "pow"]
 UNAR_OPERATORS = ["cos", "sin", "exp", "sqrt"]
 
+model10000_55 = KovasznayFlowSymbolRegressionModel(
+    model_name="model10000_55_v2",
+    X_file=X_DATA_PATH,
+    y_file=Y_DATA_PATH,
+    binary_operators=BIN_OPERATORS,
+    unary_operators=UNAR_OPERATORS,
+    npoints=10000,
+    niterations=30,
+    populations=10,
+    population_size=55
+)
+
+model10000_55.train()
+model10000_55.save_results()
+
+'''
+model1000_55 = KovasznayFlowSymbolRegressionModel(
+    model_name="model1000_55",
+    X_file=X_DATA_PATH,
+    y_file=Y_DATA_PATH,
+    binary_operators=BIN_OPERATORS,
+    unary_operators=UNAR_OPERATORS,
+    npoints=1000,
+    niterations=100,
+    populations=5,
+    population_size=55
+)
+
+model10000_55 = KovasznayFlowSymbolRegressionModel(
+    model_name="model10000_55",
+    X_file=X_DATA_PATH,
+    y_file=Y_DATA_PATH,
+    binary_operators=BIN_OPERATORS,
+    unary_operators=UNAR_OPERATORS,
+    npoints=10000,
+    niterations=100,
+    populations=5,
+    population_size=55
+)
+
+model1000_55.train()
+model1000_55.save_results()
+
+model10000_55.train()
+model10000_55.save_results()
+
 model100_22 = KovasznayFlowSymbolRegressionModel(
     model_name="model100_22",
     X_file=X_DATA_PATH,
@@ -52,7 +98,7 @@ model100_55.save_results()
 
 model100_100.train()
 model100_100.save_results()
-
+'''
 
 '''
 model1000_22 = KovasznayFlowSymbolRegressionModel(

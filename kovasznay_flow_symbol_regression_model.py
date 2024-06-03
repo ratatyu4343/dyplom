@@ -3,16 +3,25 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 from pysr import PySRRegressor
-
+import random
 
 class KovasznayFlowSymbolRegressionModel:
     def __init__(self, model_name, X_file, y_file, niterations, binary_operators, unary_operators, npoints,
                  populations, population_size, extra_sympy_mappings={}, elementwise_loss="(prediction - target)^2", re=20):
         self.model_name = model_name
+
         self.ALL_X = np.load(X_file)
         self.ALL_Y = np.load(y_file)
-        self.X = self.ALL_X[:npoints]
-        self.y = self.ALL_Y[:npoints]
+
+        # Отримання випадкових індексів
+        indices = random.sample([i for i in range(len(self.ALL_X))], npoints)
+
+        self.X = self.ALL_X[indices]
+        self.y = self.ALL_Y[indices]
+
+        print(self.ALL_X.shape, self.ALL_Y.shape)
+        print(self.X.shape, self.y.shape)
+
         self.niterations = niterations
         self.populations = populations
         self.population_size = population_size
@@ -29,6 +38,7 @@ class KovasznayFlowSymbolRegressionModel:
             os.makedirs(self.results_dir)
 
         self.model = PySRRegressor(
+            ncycles_per_iteration=1000,
             model_selection="accuracy",
             populations=self.populations,
             population_size=self.population_size,
