@@ -28,12 +28,80 @@ BOUNDARYPOINTS3 = 10000
 
 TESTPOINTS = 1000
 SHOWPOINTS = 40000
-ITERATIONS = 25000
+ITERATIONS = 100000
 
 COOLDOWNTIME = 60 * 2
 
 # Set search geometry
 geometry = dde.geometry.Rectangle(xmin=[-0.5, -0.5], xmax=[1, 1.5])
+
+model10_2_1000 = KovasznayFlowModel(
+        model_name="model10_2_1000",
+        num_domain_points=DOMAINPOINTS2,
+        num_boundary_points=BOUNDARYPOINTS2,
+        num_test_points=TESTPOINTS,
+        num_show_points=SHOWPOINTS,
+        network_structure=SHAPE1_2,
+        geometry=geometry,
+        num_iterations=ITERATIONS,
+        save_animation=True
+)
+
+model30_2_1000 = KovasznayFlowModel(
+        model_name="model30_2_1000",
+        num_domain_points=DOMAINPOINTS2,
+        num_boundary_points=BOUNDARYPOINTS2,
+        num_test_points=TESTPOINTS,
+        num_show_points=SHOWPOINTS,
+        network_structure=SHAPE2_2,
+        geometry=geometry,
+        num_iterations=ITERATIONS,
+        save_animation=True
+)
+
+model30_3_1000 = KovasznayFlowModel(
+        model_name="model30_3_1000",
+        num_domain_points=DOMAINPOINTS2,
+        num_boundary_points=BOUNDARYPOINTS2,
+        num_test_points=TESTPOINTS,
+        num_show_points=SHOWPOINTS,
+        network_structure=SHAPE2_3,
+        geometry=geometry,
+        num_iterations=ITERATIONS,
+        save_animation=True
+)
+
+model10_2_1000.train_model()
+model30_2_1000.train_model()
+model30_3_1000.train_model()
+
+'''
+model60_1_100 = KovasznayFlowModel(
+        model_name="model60_1_100",
+        num_domain_points=DOMAINPOINTS1,
+        num_boundary_points=BOUNDARYPOINTS1,
+        num_test_points=TESTPOINTS,
+        num_show_points=SHOWPOINTS,
+        network_structure=SHAPE3_1,
+        geometry=geometry,
+        num_iterations=ITERATIONS,
+        save_animation=True
+)
+
+model60_1_1000 = KovasznayFlowModel(
+        model_name="model60_1_1000",
+        num_domain_points=DOMAINPOINTS2,
+        num_boundary_points=BOUNDARYPOINTS2,
+        num_test_points=TESTPOINTS,
+        num_show_points=SHOWPOINTS,
+        network_structure=SHAPE3_1,
+        geometry=geometry,
+        num_iterations=ITERATIONS,
+        save_animation=True
+)
+
+model60_1_100.train_model()
+model60_1_1000.train_model()
 
 # Create combination matrix
 row1 = [SHAPE1_1, SHAPE2_1, SHAPE3_1, SHAPE1_2, SHAPE2_2, SHAPE3_2, SHAPE1_3, SHAPE2_3, SHAPE3_3]
@@ -59,4 +127,4 @@ for combination in combinations:
 for model in models:
     model.train_model()
     time.sleep(COOLDOWNTIME)
-
+'''

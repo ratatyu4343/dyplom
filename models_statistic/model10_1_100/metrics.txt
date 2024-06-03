@@ -1,4 +1,4 @@
-Mean residual: 0.14556850492954254
-L2 relative error in u: 0.3385978639125824
-L2 relative error in v: 0.8872116208076477
-L2 relative error in p: 0.7929994463920593
+Mean residual: 0.1692538857460022
+L2 relative error in u: 0.2354177087545395
+L2 relative error in v: 0.6493842601776123
+L2 relative error in p: 0.4102485179901123

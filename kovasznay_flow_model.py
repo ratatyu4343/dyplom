@@ -253,8 +253,9 @@ class KovasznayFlowModel:
                 plt.colorbar(label='Передбачена магнітуда швидкості')
                 plt.title('Передбачена швидкість')
                 plt.savefig(f"{self.model_name}/animation/{i}.png")
-            finally:
                 plt.close()
+            except:
+                print("some eror")
 
         def atoi(text):
             return int(text) if text.isdigit() else text

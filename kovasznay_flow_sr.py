@@ -1,4 +1,3 @@
-from pysr import PySRRegressor
 import os
 
 os.environ["DDE_BACKEND"] = "tensorflow"
@@ -43,6 +42,7 @@ model = PySRRegressor(
     temp_equation_file=True,
 )
 
+print(X.shape, y.shape)
 model.fit(X, y)
 print(model)
 
